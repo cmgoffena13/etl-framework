@@ -50,11 +50,11 @@ SET XACT_ABORT ON
 	SELECT
 	rt.RunTimeID,
 	rt.PipelineID,
-	rt.SecondsElapsed
+	rt.RunTimeSeconds
 	INTO #Results
 	FROM etl.RunTime AS rt
 	INNER JOIN CTE
-		ON CTE.RunTimeID = pe.RunTimeID
+		ON CTE.RunTimeID = rt.RunTimeID
 	WHERE rt.RunTimeSeconds > @SecondsThreshold
 	SET TRANSACTION ISOLATION LEVEL READ COMMITTED
 
