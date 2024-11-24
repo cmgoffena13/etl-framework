@@ -1,26 +1,38 @@
 # MSSQL ETL Metadata Framework
-Created and maintained by Cortland Goffena; Works with SQL Server 2016 forward
-## Features
-- Performant & Scalable Patterns
-	- designs for chunking extremely large amounts of data
-- Pipeline Logging and Metadata store
-	- Track DML operations per run
-	- Monitor pipeline run times
-	- Store watermarks for incremental loads
-- Data Quality Framework
-    - Automated SQL audit framework for Completeness, Accuracy, Timeliness, and Custom checks. Create your rules and execute!
-- Address Lineage
-	- Store address lineage of pipelines
-    - Document addresses such as files, tables, reports etc. to keep track of outside dependencies
-- Flexible Design
-	- Turn pipelines on/off through code
-	- Easily adjust ingest limits to keep up with growth
-- Automated Log Cleanup
-	- Choose how much data you need to retain
-- Orchestrator and Ingestion Tool Agnostic
-	- You pick how to ingest your data and orchestrate your piplines
-- Pipeline Deprecation Process
-	- Empower stranded pipeline cleanup
+**Simplifying Data Management for Scalable, High-Quality ETL Pipelines**
+
+In today's data-driven world, organizations grapple with the challenges of managing ever-growing datasets. As data volumes expand, ensuring efficient extraction, transformation, and loading (ETL) processes becomes increasingly complex. Teams often find themselves wrestling with slow data transfers, lack of visibility into pipeline operations, data quality issues, and difficulties in tracking data lineage. These challenges not only hinder productivity but also impact strategic decision-making.
+
+**Enter the MSSQL ETL Metadata Framework**—a robust solution designed to address these pain points and streamline your data management processes.
+## **The Challenge**
+
+- **Scalability Concerns:** Traditional ETL processes struggle to handle massive datasets efficiently, leading to prolonged processing times and system bottlenecks.
+- **Limited Visibility:** Without proper logging and metadata storage, tracking the performance and operations of data pipelines becomes a daunting task.
+- **Data Quality Issues:** Ensuring the completeness, accuracy, and timeliness of data is critical, yet difficult to maintain without automated checks.
+- **Complex Data Lineage:** Understanding where data comes from and how it flows through systems is essential for compliance and impact analysis but is often neglected.
+- **Maintenance Overhead:** Manually cleaning up logs and deprecating outdated pipelines consumes valuable resources.
+## **The Solution**
+
+The MSSQL ETL Metadata Framework is designed to tackle these challenges head-on, providing a comprehensive toolkit for building performant, transparent, and quality ETL pipelines within SQL Server environments (2016 onward).
+
+### **Key Benefits**
+
+- **Enhanced Performance and Scalability:**
+    - **Efficient Data Chunking:** Break down large datasets into manageable chunks for faster processing. Manage data influxes from upstream pipelines and handle large scale data quality audits with ease.
+- **Comprehensive Pipeline Logging and Metadata Storage:**
+    - **Operation Tracking:** Monitor data manipulation language (DML) operations for each run, giving you clear insights into what changes are occurring.
+    - **Run-Time Monitoring:** Keep an eye on pipeline performance over time to identify and address bottlenecks promptly.
+    - **Incremental Load Management:** Store watermarks to seamlessly handle incremental data loads without reprocessing entire datasets.
+- **Robust Data Quality Framework:**
+    - **Automated Audits:** Implement scalable checks for data completeness, accuracy, and timeliness automatically.
+    - **Custom Validation Rules:** Define and execute your own data quality rules to meet specific business requirements.
+	- **Alerting:** Alerting hooks available for SQL Server Database Mail
+- **Transparent Data Lineage Tracking:**
+    - **Dependency Mapping:** Document data sources and destinations—including files, tables, and reports—to understand data dependencies fully.
+    - **Impact Analysis:** Quickly assess how changes to one part of your data ecosystem might affect other components.
+- **Automated Maintenance Features:**
+    - **Log Cleanup Automation:** Set retention policies to automatically delete old logs, ensuring optimal performance and compliance with data governance policies.
+    - **Pipeline Deprecation Process:** Safely retire outdated pipelines, helping to maintain a clean and efficient data environment.
 ## Table of Contents
 1. [Setup](#Setup)
 2. [Database Diagram](#Database-Diagram)
