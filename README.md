@@ -106,6 +106,7 @@ The MSSQL ETL Metadata Framework is designed to tackle these challenges head-on,
 	9. [etl.Pipeline_D](#etlPipeline_D)
 	6. [etl.LogMaintenance_D](#etlLogMaintenance_D)
 	8. [etl.AddressLineage_S](#etlAddressLineage_S)
+7. [Misc Notes](#Misc-Notes)  
 ## Setup
 To create all the necessary objects, open the Setup.sql file in the main directory and execute it in your chosen database. Then utilize the examples to set up your own pipeline!
 ## Database Diagram
@@ -116,8 +117,7 @@ This repo does not include proper alerting. You will need to configure proper em
 2. etl.AuditCustomCheck
 3. etl.AuditTimelinessPipelineCheck
 4. etl.DeprecationFinalCheck  
-  
-  A key limitation of the framework is that it requires pipeline information to be hard-coded in your ingestion tool or scripts used in your ingestion tool. You can remove this limitation by moving the etl.Pipeline_UI call out of the etl.RunTime_I stored procedure and create pipelines and metadata using just etl.Pipeline_UI upon a deployment. Another aspect that would need to change if you make the above change is the watermark increment. The next watermark is normally supplied to etl.Pipeline_UI through etl.RunTime_I and it is incremented through etl.RunTime_U. Once those aspects are addressed, the result would be a good starting point to design a table-driven process that dynamically creates ingestion pipelines based upon variables and script templates, which I would **highly recommend** if your ingestion tool supports that functionality and you plan for a large data warehouse. 
+ 
 ## Tutorial
 This tutorial was created for you to easily see the main features of the framework by spinning up an example provided. The three separate jobs of timeliness checks, deprecation notifications, and log maintenance are not included. For ease of scripts and data lineage, I would recommend creating a new database with the name of "ETL_Metadata". I would also recommend turning on ChangeTracking and having the database logging setting be "Simple".  
   
@@ -643,7 +643,7 @@ BEGIN
 								@TotalRows = @TotalRows
 END
 ```
-## General Documenation
+## General Documentation
 ### Naming a Pipeline
 The name of a pipeline must be unique, and given the different types of pipelines you can create, it is important to have a proper naming convention for pipelines so they can be easily understood. I would recommend the following approach:
 ```
@@ -1260,12 +1260,12 @@ This stored procedure is used to create custom audit rules using custom queries.
     - Used to indicate whether an alert should stop the pipeline. Error does stop it.
 	- This or @InfoAlert must be supplied
 ### etl.AuditLoad
-The etl.AuditLoad sproc is the trigger point for the audit framework. As long as the pipeline has a correct target address and audit rules have successfully been created for the pipeline, the audits will occur. Below are the inputs:
+The etl.AuditLoad stored procedure is the trigger point for the audit framework. As long as the pipeline has a correct target address and audit rules have successfully been created for the pipeline, the audits will occur. Below are the inputs:
  - @ParentRunTimeID BIGINT - Optional
 	- Default NULL
 	- Used when @FullLoad=0 for incremental audit of the parent run time
  - @RunTimeID BIGINT - **Required**
-	- To associate the audit with a specific run time
+	- To associate the audit with a specific run time, created during run time using etl.RunTime_I
  - @PipelineID INT - **Required**
 	- To find the audit rules associated with the pipeline
  - @FullLoad BIT - Optional
@@ -1348,3 +1348,6 @@ This stored procedures is used to view lineage from the etl.AddressDependency ta
  - @Downstream BIT - **Required**
 	- This or @Upstream must = 1
 	- Shows addresses that are dependent upon designated address
+
+## Misc Notes
+A key limitation of the framework is that it requires pipeline information to be hard-coded in your ingestion tool or scripts used in your ingestion tool. You can remove this limitation by moving the etl.Pipeline_UI call out of the etl.RunTime_I stored procedure and create pipelines and metadata using just etl.Pipeline_UI upon a deployment. Another aspect that would need to change if you make the above change is the watermark increment. The next watermark is normally supplied to etl.Pipeline_UI through etl.RunTime_I and it is incremented through etl.RunTime_U. Once those aspects are addressed, the result would be a good starting point to design a table-driven process that dynamically creates ingestion pipelines based upon variables and script templates, which I would **highly recommend** if your ingestion tool supports that functionality and you plan for a large data warehouse.
