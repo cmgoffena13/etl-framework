@@ -940,7 +940,7 @@ Once the notification alert is received, tickets can be created to physically re
 ```sql
 EXEC etl.DeprecationFinal_D @FullAddress = 'TargetDatabase.TargetSchema.TargetTable'
 ```
-**IMPORTANT** - The final deprecation completely removes all the log data associated. The information removed is the PipelineIDs found in the etl.DeprecationDeclared table and all of the audit logs, run time logs, etc. for those pipelines.  
+**IMPORTANT** - The final deprecation completely removes all the log  data associated. The information removed is the PipelineIDs found in the etl.DeprecationDeclared table and all of the audit logs, run time logs, etc. for those pipelines.  
   
   Note: You will also want to check for any stranded pipelines that are obsolete. Majority should always have a target address. You can utilize the etl.Pipeline_D stored procedure to manually clean them up when necessary.
 ## Audit Framework
@@ -1152,7 +1152,7 @@ This procedure is used to identify a stored procedure name or username into an I
  - @PipelineUserID INT - **Required OUTPUT**
 	- The ID of the user or stored procedure
 ### etl.Pipeline_UI
-The etl.Pipeline_UI stored procedure is used to manually create pipeline and input PipelineArgs at creation. This sproc is triggered by etl.RunTime_I every run, so it normally only has to be utilized to manually create a pipeline before manually creating audit rules. Below are the inputs:
+The etl.Pipeline_UI stored procedure is used to manually create pipeline and input PipelineArgs at creation. This sproc is triggered by etl.RunTime_I every run, so it normally only has to be utilized to manually create a pipeline before manually creating audit rules or creating specific Pipeline Args that have to be ran in the first run. Below are the inputs:
  - @PipelineName VARCHAR(150) - **Required**
     - Pipeline Identifier Ex. 'SourceDatabase.SourceSchema.SourceTable Extraction'
     - Must be unique
