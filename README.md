@@ -3,7 +3,9 @@
 
 In today's data-driven world, organizations grapple with the challenges of managing ever-growing datasets. As data volumes expand, ensuring efficient extraction, transformation, and loading (ETL) processes becomes increasingly complex. Teams often find themselves wrestling with slow data transfers, lack of visibility into pipeline operations, data quality issues, and difficulties in tracking data lineage. These challenges not only hinder productivity but also impact strategic decision-making.
 
-**Enter the MSSQL ETL Metadata Framework**—a robust solution designed to address these pain points and streamline your data management processes.
+**Enter the MSSQL ETL Metadata Framework**—a robust solution designed to address these pain points and streamline your data management processes. 
+
+![linesofcode](https://aschey.tech/tokei/github/cmgoffena13/etl-framework?category=code)
 ## **The Challenge**
 
 - **Scalability Concerns:** Traditional ETL processes struggle to handle massive datasets efficiently, leading to prolonged processing times and system bottlenecks.
